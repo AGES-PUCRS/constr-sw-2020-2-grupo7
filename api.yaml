@@ -1,0 +1,185 @@
+swagger: "2.0"
+info:
+  description: "API do microserviço que gerencia `alunos`"
+  version: "1.0.0"
+  title: "API Alunos"
+host: "localhost:3000"
+basePath: "/v1/api/"
+tags:
+- name: "alunos"
+  description: "Manipulação de alunos"
+schemes:
+- "https"
+- "http"
+paths:
+  /alunos:
+    get:
+      tags:
+      - "alunos"
+      summary: "Lista todos os alunos"
+      operationId: "getAlunos"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/Alunos"
+    post:
+      tags:
+      - "alunos"
+      summary: "Cria um aluno"
+      operationId: "postAluno"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Aluno"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "202":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/Aluno"
+        "302":
+          description: "Found: Objeto já existente"
+  /alunos/{id}:
+    get:
+      tags:
+      - "alunos"
+      summary: "Lista um aluno"
+      operationId: "getAluno"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/Aluno"
+
+    put:
+      tags:
+      - "alunos"
+      summary: "Atualiza um aluno"
+      operationId: "putAluno"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Aluno"
+      responses:
+        "200":
+          description: "Ok"
+        "404":
+          description: "Not found: Objeto não encontrado"
+    patch:
+      tags:
+      - "alunos"
+      summary: "Atualiza parcialmente um aluno"
+      operationId: "patchAluno"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Aluno"
+      responses:
+        "200":
+          description: "Ok"
+        "404":
+          description: "Not found: Objeto não encontrado"
+    delete:
+      tags:
+      - "alunos"
+      summary: "Deleta um aluno"
+      operationId: "deletePet"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "api_key"
+        in: "header"
+        required: false
+        type: "string"
+      - name: "id"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Ok"
+        "404":
+          description: "Not found: Objeto não encontrado"
+definitions:
+  Alunos:
+    type: array
+    items:
+      $ref: "#/definitions/Aluno"
+  Aluno:
+    type: "object"
+    required:
+    - "name"
+    - "email"
+    - "phones"
+    - "cpf"
+    - "rg"
+    - "birthdate"
+    - "registration"
+    properties:
+      name:
+        type: "string"
+        example: "Eduardo Arruda"
+      email:
+        type: "string"
+        example: "eduardo.arruda@pucrs.br"
+      phones:
+        type: "array"
+        items:
+          type: "string"
+          example: "5551912345678"
+      cpf:
+        type: "string"
+        example: "12345678910"
+      rg:
+        type: "string"
+        example: "12345678910"
+      birthdate:
+        type: "string"
+        example: "2020-01-01"
+      registration:
+        type: "string"
+        example: "123456789"
