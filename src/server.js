@@ -9,8 +9,8 @@ app.use(cors())
 app.use(express.json())
 
 // mongoose.connect('mongodb://localhost:8081/alunos', { useUnifiedTopology: true, useNewUrlParser: true })
-// requiredir('./src/')
-// app.use('/api', require('./src/routes'))
+// requiredir('./')
+app.use('/api', require('./routes'))
 
 app.listen(3000, () => {
     console.log("server up and running on port: 3000");
