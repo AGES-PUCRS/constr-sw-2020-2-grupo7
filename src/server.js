@@ -9,7 +9,15 @@ app.use(cors())
 app.use(express.json())
 
 // connect to mongo
-mongoose.connect('mongodb://localhost:27017/Aluno', { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/Aluno?authSource=root',
+    {
+        "auth": {
+          "authSource": "admin"
+        },
+        "user": "root",
+        "pass": "example"
+    }
+  )
 
 // get models
 requiredir('./models')
