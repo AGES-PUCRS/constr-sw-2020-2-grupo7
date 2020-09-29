@@ -8,7 +8,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-// mongoose.connect('mongodb://localhost:27017/alunos', { useUnifiedTopology: true, useNewUrlParser: true })
+// mongoose.connect('mongodb://localhost:8081/alunos', { useUnifiedTopology: true, useNewUrlParser: true })
 // requiredir('./src/')
 // app.use('/api', require('./src/routes'))
 
