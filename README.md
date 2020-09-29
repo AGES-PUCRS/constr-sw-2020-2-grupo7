@@ -24,6 +24,6 @@ $ node src/server.js
 **Test routes**
 ```sh
 $ curl -X GET http://localhost:3000/api/alunos
-$ curl -X POST http://localhost:3000/api/alunos -H "Content-Type: application/json" -d {<required body>}
+$ curl -X POST http://localhost:3000/api/alunos -H "Content-Type: application/json" -d '{"<key>": "<value>"}'
 $ man curl
 ```
