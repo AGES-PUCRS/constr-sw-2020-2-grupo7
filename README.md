@@ -21,6 +21,9 @@ $ npm install
 $ node src/server.js
 ```
 
+**Check docs**
+When the service is running, go to http://localhost:3000/api/docs
+
 **Test routes**
 ```sh
 $ curl -X GET http://localhost:3000/api/alunos
