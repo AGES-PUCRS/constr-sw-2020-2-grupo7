@@ -2,6 +2,9 @@ const express = require('express')
 const mongoose = require('mongoose')
 const requiredir = require('require-dir')
 const cors = require('cors')
+const swaggerUi = require('swagger-ui-express')
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./api.yaml');
 
 const app = express()
 
@@ -24,9 +27,10 @@ requiredir('./models')
 
 // get routes
 app.use('/api', require('./routes'))
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // start api
 app.listen(3000, () => {
-    console.log("server up and running on port: 3000");
+    console.log("server up and running on port: 3000")
 })
 
