@@ -5,46 +5,88 @@ const Student = mongoose.model('Aluno')
 
 module.exports = {
 
-    async list(req, res){
+    async list(req, res) {
         console.log("\nlisting students ...")
-        const students = await Student.find()
-        return res.json(students)
+        try {
+            const students = await Student.find()
+            res.status(200);
+            return res.json(students)
+        }
+        catch{
+            res.status(404);
+            res.send('None shall pass');
+        }
     },
 
-    async get(req, res){
+    async get(req, res) {
         console.log("\ngetting student ...")
         console.log(req.params.id)
-        const student = await Student.findById(req.params.id)
-        return res.json(student)
+        try {
+            const student = await Student.findById(req.params.id)
+            res.status(200);
+            return res.json(student)
+        }
+        catch{
+            res.status(404);
+            res.send('None shall pass');
+        }
     },
 
-    async post(req, res){
+    async post(req, res) {
         console.log("\ncreating student ...")
         console.log(req.body)
-        const student = await Student.create(req.body)
-        return res.json(student)
+        try {
+            const student = await Student.create(req.body)
+            res.status(200);
+            return res.json(student)
+        }
+        catch{
+            res.status(302);
+            res.send('None shall pass');
+        }
     },
 
-    async put(req, res){
+    async put(req, res) {
         console.log("\nupdating student ...")
         console.log(req.params.id)
         console.log(req.body)
-        const student = await Student.findAndUpdate(req.params.id, req.body, {new: true})
-        return res.json(student)
+        try {
+            const student = await Student.findAndUpdate(req.params.id, req.body, { new: true })
+            res.status(200);
+            return res.json(student)
+        }
+        catch{
+            res.status(404);
+            res.send('None shall pass');
+        }
     },
 
-    async patch(req, res){
+    async patch(req, res) {
         console.log("\npartially updating student ...")
         console.log(req.params.id)
         console.log(req.body)
-        const student = await Student.findAndUpdate(req.params.id, req.body, {new: true})
-        return res.json(student)
+        try {
+            const student = await Student.findAndUpdate(req.params.id, req.body, { new: true })
+            res.status(200);
+            return res.json(student)
+        }
+        catch{
+            res.status(404);
+            res.send('None shall pass');
+        }
     },
 
-    async delete(req, res){
+    async delete(req, res) {
         console.log("\ndeleting student ...")
         console.log(req.params.id)
-        await Student.findByIdAndRemove(req.params.id)
-        return res.send()
+        try {
+            await Student.findByIdAndRemove(req.params.id)
+            res.status(200);
+            return res.send()
+        }
+        catch{
+            res.status(404);
+            res.send('None shall pass');
+        }
     }
 }
