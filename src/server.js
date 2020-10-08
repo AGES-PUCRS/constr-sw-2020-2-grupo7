@@ -17,8 +17,8 @@ mongoose.connect('mongodb://localhost:27017/Aluno?authSource=root',
         "auth": {
           "authSource": "admin"
         },
-        "user": "root",
-        "pass": "example"
+        "user": "admin",
+        "pass": "password"
     }
   )
 
