@@ -1,6 +1,10 @@
 {
     "containerDefinitions": [
         {
+            "entryPoint": [
+                "node",
+                "src/server.js"
+            ],
             "portMappings": [
                 {
                     "hostPort": 3000,
@@ -10,8 +14,7 @@
             ],
             "cpu": 10,
             "memory": 300,
-            "name": "api-alunos",
-            "image": "$image"
+            "name": "api-alunos"
         }
     ],
     "family": "start-grupo7-api-alunos",
