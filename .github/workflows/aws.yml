@@ -3,12 +3,7 @@
 #
 
 on:
-  workflow_dispatch:
-      inputs:
-        logLevel:
-          description: 'Log level'     
-          required: true
-          default: 'info'
+  workflow_dispatch
 
 name: Deploy to Amazon ECS
 

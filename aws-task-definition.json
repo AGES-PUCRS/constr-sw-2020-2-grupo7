@@ -14,8 +14,8 @@
             ],
             "cpu": 10,
             "memory": 300,
-            "name": "api-alunos",
-            "image": "const-sw/api-alunos"
+            "name": "container-name",
+            "image": "image"
         }
     ],
     "family": "start-grupo7-api-alunos",
