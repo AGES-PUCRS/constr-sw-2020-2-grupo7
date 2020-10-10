@@ -14,8 +14,8 @@
             ],
             "cpu": 10,
             "memory": 300,
-            "name": "container-name",
-            "image": "image"
+            "name": "api-alunos",
+            "image": "$image"
         }
     ],
     "family": "start-grupo7-api-alunos",
