@@ -2,8 +2,42 @@ const { response } = require('express')
 const mongoose = require('mongoose')
 const Student = mongoose.model('Aluno')
 
+const Joi = require('joi');
+
+const schema = Joi.object({
+    name: Joi.string()
+        .alphanum()
+        .min(3)
+        .max(30)
+        .required(),
+
+    phones: Joi.array() // TODO
+        .required(),
+
+    cpf: Joi.string()
+        .min(11)
+        .max(11)
+        .required(),
+    rg: Joi.string()
+        .min(10)
+        .max(10)
+        .required(),
+    registration: Joi.string()
+        .min(9)
+        .max(9)
+        .required(),
+    birthdate: Joi.number()
+        .integer()
+        .min(1900)
+        .max(2015),
+
+    email: Joi.string()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+})
+
 
 module.exports = {
+
 
     async list(req, res) {
         console.log("\nlisting students ...")
@@ -12,7 +46,7 @@ module.exports = {
             res.status(200);
             return res.json(students)
         }
-        catch{
+        catch {
             res.status(404);
             res.send('None shall pass');
         }
@@ -26,7 +60,7 @@ module.exports = {
             res.status(200);
             return res.json(student)
         }
-        catch{
+        catch {
             res.status(404);
             res.send('None shall pass');
         }
@@ -35,14 +69,17 @@ module.exports = {
     async post(req, res) {
         console.log("\ncreating student ...")
         console.log(req.body)
+        const errorMessage = await schema.validateAsync(req.body)
         try {
+            console.log(result)
             const student = await Student.create(req.body)
             res.status(200);
             return res.json(student)
         }
-        catch{
+        catch {
             res.status(302);
-            res.send('None shall pass');
+            res.send(errorMessage)
+            // res.send('None shall pass');
         }
     },
 
@@ -55,7 +92,7 @@ module.exports = {
             res.status(200);
             return res.json(student)
         }
-        catch{
+        catch {
             res.status(404);
             res.send('None shall pass');
         }
@@ -70,7 +107,7 @@ module.exports = {
             res.status(200);
             return res.json(student)
         }
-        catch{
+        catch {
             res.status(404);
             res.send('None shall pass');
         }
@@ -84,7 +121,7 @@ module.exports = {
             res.status(200);
             return res.send()
         }
-        catch{
+        catch {
             res.status(404);
             res.send('None shall pass');
         }
