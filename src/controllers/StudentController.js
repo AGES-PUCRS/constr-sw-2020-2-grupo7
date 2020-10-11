@@ -70,13 +70,11 @@ module.exports = {
         console.log("\ncreating student ...")
         console.log(req.body)
         const errorMessage = await schema.validateAsync(req.body)
-        try {
-            console.log(result)
+        if (!errorMessage) {
             const student = await Student.create(req.body)
             res.status(200);
             return res.json(student)
-        }
-        catch {
+        } else {
             res.status(302);
             res.send(errorMessage)
             // res.send('None shall pass');
