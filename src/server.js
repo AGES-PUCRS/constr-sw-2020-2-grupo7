@@ -11,8 +11,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+
 // connect to mongo
-mongoose.connect('mongodb://localhost:27017/Aluno?authSource=root',
+mongoose.connect('mongodb://localhost:27017/Aluno',
     {
         "auth": {
           "authSource": "admin"
