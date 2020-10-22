@@ -1,34 +1,59 @@
 const { response } = require('express')
 const mongoose = require('mongoose')
-const Student = mongoose.model('Aluno')
+const Student = mongoose.model('Student')
 const { schema, schemaUpdate } = require('../schemas')
 
 module.exports = {
 
-    async list(req, res) {
-        console.log("\nlisting students ...")
+    async list(req, res) {    
+        
         try {
-            const students = await Student.find()
-            res.status(200)
-            return res.json(students)
-        }
-        catch {
-            res.status(404)
-            res.send('None shall pass')
+
+            if (Object.keys(req.query).length != 0) {
+                const students = await Student.find(req.query)
+                res.status(200)
+                return res.json(students)
+            } 
+            
+            else {
+                const students = await Student.find()
+                res.status(200)
+                return res.json(students)
+            }
+        
+        } catch {
+            res.status(400)
+            return res.send('None shall pass')
         }
     },
 
     async get(req, res) {
-        console.log("\ngetting student ...")
         try {
+
             const student = await Student.findById(req.params.id)
-            res.status(200)
-            console.log(req.params.id)
-            return res.json(student)
+
+            if(req.query.expand != undefined) {
+                if (req.query.expand == 'class') {
+                    res.status(200)
+                    res.send(student.classes)
+                }
+                else if (req.query.expand = 'evaluation'){
+                    res.status(200)
+                    res.send(student.evaluations)
+                }
+                else {
+                    res.status(200)
+                    res.send(student.evaluations)
+                }
+            } else {
+                res.status(200)
+                return res.json(student)
+            }
         }
+
         catch {
-            res.status(404);
-            res.send('None shall pass');
+            res.status(404)
+            res.send('None shall pass')
         }
     },
 
@@ -63,8 +88,8 @@ module.exports = {
             return res.json(student)
         }
         catch {
-            res.status(404);
-            res.send('None shall pass');
+            res.status(404)
+            res.send('None shall pass')
         }
     },
 
@@ -82,8 +107,8 @@ module.exports = {
             return res.json(student)
         }
         catch {
-            res.status(404);
-            res.send('None shall pass');
+            res.status(404)
+            res.send('None shall pass')
         }
     },
 
@@ -97,8 +122,8 @@ module.exports = {
             return res.send()
         }
         catch {
-            res.status(404);
-            res.send('None shall pass');
+            res.status(404)
+            res.send('None shall pass')
         }
     }
 }
