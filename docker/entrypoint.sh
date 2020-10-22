@@ -10,4 +10,4 @@ mongod --fork --logpath /var/log/mongod.log
 
 mongo admin --eval 'db.createUser({user: "admin", pwd: "password", roles: [ "root" ]});'
 
-node src/server.js
+node src/server.js > /var/log/api-alunos.log
