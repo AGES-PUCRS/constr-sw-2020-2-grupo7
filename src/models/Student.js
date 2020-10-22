@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const ProductSchema = new mongoose.Schema({
+const AlunoSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true
@@ -29,10 +29,18 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         requires: true
     },
+    classes: {
+        type: Array,
+        required: false
+    },
+    evaluations: {
+        type: Array,
+        required: false
+    },
     createdAt:{
         type: Date,
         default: Date.now
     },
 })
 
-mongoose.model('Aluno', ProductSchema)
+mongoose.model('Student', AlunoSchema)

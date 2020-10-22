@@ -14,18 +14,27 @@ const schema = Joi.object({
     .min(11)
     .max(11)
     .required(),
+
   rg: Joi.string()
     .min(10)
     .max(10)
     .required(),
+
   registration: Joi.string()
     .min(9)
     .max(9)
     .required(),
-  birthdate: Joi.date().raw().required(),
+
+  birthdate: Joi.date()
+    .raw()
+    .required(),
 
   email: Joi.string()
-    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'br'] } }),
+
+  classes: Joi.array(),
+
+  evaluations: Joi.array()
 })
 
 const schemaUpdate = Joi.object({
@@ -38,16 +47,24 @@ const schemaUpdate = Joi.object({
   cpf: Joi.string()
     .min(11)
     .max(11),
+
   rg: Joi.string()
     .min(10)
     .max(10),
+
   registration: Joi.string()
     .min(9)
     .max(9),
-  birthdate: Joi.date().raw(),
+
+  birthdate: Joi.date()
+    .raw(),
 
   email: Joi.string()
-    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
+    .email({ minDomainSegments: 2, tlds: { allow: ['com', 'br'] } }),
+  
+  classes: Joi.array(),
+
+  evaluations: Joi.array()
 })
 
 
