@@ -42,8 +42,8 @@ module.exports = {
                     res.send(student.evaluations)
                 }
                 else {
-                    res.status(200)
-                    res.send(student.evaluations)
+                    res.status(404)
+                    res.send('Not Found!')
                 }
             } else {
                 res.status(200)

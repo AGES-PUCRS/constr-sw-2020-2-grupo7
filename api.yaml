@@ -3,8 +3,8 @@ info:
   description: "API do microserviço que gerencia `alunos`"
   version: "1.0.0"
   title: "API Alunos"
-host: "localhost:3000"
-basePath: "/v1/api/"
+host: "http://ec2-3-236-239-112.compute-1.amazonaws.com:3000"
+basePath: "/api"
 tags:
 - name: "alunos"
   description: "Manipulação de alunos"
