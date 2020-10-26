@@ -5,6 +5,10 @@ const { schema, schemaUpdate } = require('../schemas')
 
 module.exports = {
 
+    async redirect(req, res) {    
+        res.redirect('/api/docs')
+    },
+
     async list(req, res) {    
         
         try {

@@ -27,8 +27,8 @@ mongoose.connect('mongodb://localhost:27017/Aluno',
 requiredir('./models')
 
 // get routes
-app.use('/api', require('./routes'))
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+app.use('/', require('./routes'))
 
 // start api
 app.listen(3000, () => {
