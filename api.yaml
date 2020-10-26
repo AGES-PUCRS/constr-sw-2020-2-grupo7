@@ -9,7 +9,6 @@ tags:
 - name: "alunos"
   description: "Manipulação de alunos"
 schemes:
-- "https"
 - "http"
 paths:
   /alunos:
@@ -172,7 +171,7 @@ definitions:
         example: "12345678910"
       rg:
         type: "string"
-        example: "12345678910"
+        example: "1234567891"
       birthdate:
         type: "string"
         example: "2020-01-01"

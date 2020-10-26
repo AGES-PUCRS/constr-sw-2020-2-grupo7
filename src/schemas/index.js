@@ -39,8 +39,8 @@ const schema = Joi.object({
 
 const schemaUpdate = Joi.object({
   name: Joi.string()
-    .alphanum()
-    .min(3),
+    .min(3)
+    .max(50),
 
   phones: Joi.array(), // TODO
 
