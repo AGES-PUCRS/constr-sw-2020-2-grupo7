@@ -2,6 +2,10 @@ const { response } = require('express')
 const mongoose = require('mongoose')
 const Student = mongoose.model('Student')
 const { schema, schemaUpdate } = require('../schemas')
+const axios = require('axios')
+
+const CLASSESURL = 'http://ec2-34-238-114-89.compute-1.amazonaws.com:3000'
+const EVALUATIONSURL = 'http://ec2-52-67-129-68.sa-east-1.compute.amazonaws.com:8000/api/v1'
 
 module.exports = {
 
@@ -37,13 +41,25 @@ module.exports = {
             const student = await Student.findById(req.params.id)
 
             if(req.query.expand != undefined) {
-                if (req.query.expand == 'class') {
+                if (req.query.expand == 'turma') {
+                    let array = []
+                    for(let i=0; i < student.classes.length; i++){
+                        const response = await axios.get(`${CLASSESURL}/turma/${student.classes[i]}`)
+                        array.push(response.data)
+                    }
+                    student.classes = array
                     res.status(200)
-                    res.send(student.classes)
+                    res.send(student)
                 }
-                else if (req.query.expand = 'evaluation'){
+                else if (req.query.expand = 'avaliacao'){
+                    let array = []
+                    for(let i=0; i < student.evaluations.length; i++){
+                        const response = await axios.get(`${EVALUATIONSURL}/avaliacoes/${student.evaluations[i]}`)
+                        array.push(response.data)
+                    }
+                    student.evaluations = array
                     res.status(200)
-                    res.send(student.evaluations)
+                    res.send(student)
                 }
                 else {
                     res.status(404)
