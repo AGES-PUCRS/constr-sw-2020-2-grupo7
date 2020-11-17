@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { StudentsListComponent } from './students-list/students-list.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -12,8 +13,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    NoopAnimationsModule
+    MatButtonModule
   ],
+  exports: [],
+
   providers: [],
   bootstrap: [AppComponent]
 })
