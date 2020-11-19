@@ -7,6 +7,7 @@ import { StudentsListComponent } from './students-list/students-list.component';
 import { MatButtonModule } from '@angular/material/button'
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon'
+import { MatInputModule } from '@angular/material/input'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MatIconModule } from '@angular/material/icon'
     BrowserModule,
     MatButtonModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule
   ],
   exports: [],
 
