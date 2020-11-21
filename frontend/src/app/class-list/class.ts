@@ -1,8 +1,9 @@
 export interface Class {
-    description: string
-    content: string
-    room: string
-    team: string
-    evaluation: string
-    date: string
+    id: string;
+    description: string;
+    content: string;
+    room: string;
+    team: string;
+    evaluation: string;
+    date: string;
 }

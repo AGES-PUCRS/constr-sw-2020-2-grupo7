@@ -17,5 +17,9 @@ export class ClassListService {
     getClasses(): Observable<Class[]> {
         return this.http.get<Class[]>(`${this.url}/classes`);
     }
+
+    deleteClass(id: string) {
+        return this.http.delete(`${this.url}/classes/${id}`)
+    }
 }
 

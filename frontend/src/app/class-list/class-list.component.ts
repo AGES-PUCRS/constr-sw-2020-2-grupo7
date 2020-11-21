@@ -4,24 +4,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ClassListService } from './class-list.service';
 import { Class } from './class';
 
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-//   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-//   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-//   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-//   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-//   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+// const ELEMENT_DATA: Class[] = [
+//   {id: "1234", date: "2020-11-02", room: "203", description: "I.A.", content: "I.A.", evaluation:"TRUE", team: "128"},
+//   {id: "1235", date: "2020-11-03", room: "204", description: "Grafos", content: "Grafos", evaluation:"FALSE", team: "227"},
+//   {id: "1236", date: "2020-11-04", room: "205", description: "Paralela", content: "Paralela", evaluation:"FALSE", team: "203"},
+//   {id: "1237", date: "2020-11-05", room: "206", description: "Distribuída", content: "Distribuída", evaluation:"TRUE", team: "127"}
 // ];
 
 @Component({
@@ -49,6 +36,12 @@ export class ClassListComponent implements OnInit, AfterViewInit{
     })
   }
 
+  deleteClass(element: any) {
+    this.classList = this.classList.filter(cL => cL !== element);
+    this.classListService.deleteClass(element.id).subscribe();
+    this.dataSource.data = this.classList;
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -57,6 +50,7 @@ export class ClassListComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.getClasses();
     console.log(this.classList);
+    // this.classList = ELEMENT_DATA;
     this.dataSource.data = this.classList;
   }
 
