@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "cosntru-soft-front"
+  "defaultProject": "cosntru-soft-front",
+  "cli": {
+    "analytics": "1d533b73-46bb-4456-abe9-e240358d8f53"
+  }
 }

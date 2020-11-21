@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
+import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar'
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar'
     MatTableModule,
     MatIconModule,
     MatInputModule,
+    MatPaginatorModule,
     MatToolbarModule
   ],
   exports: [],
