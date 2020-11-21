@@ -11,11 +11,11 @@ export class ClassListService {
     url: string;
 
     constructor(private http: HttpClient) {
-        this.url = "ec2-18-218-177-125.us-east-2.compute.amazonaws.com:3000/api/v1";
+        this.url = "http://ec2-18-218-177-125.us-east-2.compute.amazonaws.com:3000/api/v1";
     }
 
-    getClasses(): Observable<[Class]> {
-        return this.http.get<[Class]>(`${this.url}/classes`);
+    getClasses(): Observable<Class[]> {
+        return this.http.get<Class[]>(`${this.url}/classes`);
     }
 }
 

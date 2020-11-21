@@ -10,7 +10,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar'
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   imports: [
@@ -19,6 +21,7 @@ import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar'
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    NoopAnimationsModule,
     MatInputModule,
     MatPaginatorModule,
     MatToolbarModule
