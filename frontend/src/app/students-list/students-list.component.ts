@@ -27,7 +27,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./students-list.component.css']
 })
 
-export class StudentsListComponent implements OnInit {
+export class StudentsListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['date', 'room', 'description', 'class', 'actions'];
   dataSource: MatTableDataSource<PeriodicElement>;

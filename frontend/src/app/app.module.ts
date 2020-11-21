@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar'
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    NoopAnimationsModule,
     MatInputModule,
     MatPaginatorModule,
     MatToolbarModule
