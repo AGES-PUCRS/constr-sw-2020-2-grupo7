@@ -7,12 +7,13 @@ import { ClassListComponent } from './class-list/class-list.component';
 
 import { MatButtonModule } from '@angular/material/button'
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DetailItemComponent } from './detail-item/detail-item.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { DetailItemComponent } from './detail-item/detail-item.component';
     BrowserModule,
     HttpClientModule,
     MatButtonModule,
+    MatDialogModule,
     MatTableModule,
     MatIconModule,
     NoopAnimationsModule,
@@ -30,7 +32,7 @@ import { DetailItemComponent } from './detail-item/detail-item.component';
   declarations: [
     AppComponent,
     ClassListComponent,
-    DetailItemComponent
+    ModalComponent
   ],
   exports: [],
   providers: [],

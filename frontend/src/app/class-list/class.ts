@@ -1,9 +1,9 @@
 export interface Class {
     id: string;
     description: string;
-    content: string;
-    room: string;
-    team: string;
-    evaluation: string;
+    content: object;
+    room: object;
+    team: object;
+    evaluation: object;
     date: string;
 }

@@ -3,6 +3,9 @@ import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator';
 import { ClassListService } from './class-list.service';
 import { Class } from './class';
+import {MatDialog} from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
+
 
 // const ELEMENT_DATA: Class[] = [
 //   {id: "1234", date: "2020-11-02", room: "203", description: "I.A.", content: "I.A.", evaluation:"TRUE", team: "128"},
@@ -18,12 +21,12 @@ import { Class } from './class';
 })
 export class ClassListComponent implements OnInit, AfterViewInit{
 
-  displayedColumns: string[] = ['date', 'room', 'description', 'team', 'actions'];
+  displayedColumns: string[] = ['date', 'room', 'description', 'content', 'evaluation', 'team', 'actions'];
   dataSource: MatTableDataSource<Class>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   
-  constructor(private classListService: ClassListService) {
+  constructor(private classListService: ClassListService, public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource()
     this.paginator = null;
   }
@@ -39,11 +42,29 @@ export class ClassListComponent implements OnInit, AfterViewInit{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  ngOnInit(): void {
+  getSpecific() {
+    let classes = []
     this.classListService.getClasses().subscribe((response) => {
       // JSON.parse prevents typescript error
-      this.dataSource.data = JSON.parse(JSON.stringify(response)).data
+      JSON.parse(JSON.stringify(response)).data.map(item => {
+        this.classListService.getSpecificClass(item._id).subscribe((response) => {
+          const query = JSON.parse(JSON.stringify(response)).data
+          classes.push(query)
+          this.dataSource.data = classes
+        })
+      })
+
     })
+    return classes
+  }
+
+  ngOnInit(): void { 
+    this.dataSource.data = this.getSpecific()
+  }
+
+  openDialog(data: Class[]) {
+    console.log(data)
+    this.dialog.open(ModalComponent, {data});
   }
 
   ngAfterViewInit(): void {
