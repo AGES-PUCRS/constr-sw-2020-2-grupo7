@@ -19,14 +19,11 @@
 .form {
     display: flex;
     flex-direction: column;
-    background-color: #FFF;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    max-width: 450px;
+    width: 300px;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 2px 2px 5px #888888;
 }
 
 .buttons {
