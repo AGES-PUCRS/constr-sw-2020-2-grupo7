@@ -18,7 +18,6 @@ import { Class } from './class';
 })
 export class ClassListComponent implements OnInit, AfterViewInit{
 
-  classList: Class[];
   displayedColumns: string[] = ['date', 'room', 'description', 'team', 'actions'];
   dataSource: MatTableDataSource<Class>;
 
@@ -29,17 +28,10 @@ export class ClassListComponent implements OnInit, AfterViewInit{
     this.paginator = null;
   }
 
-  getClasses() {
-    this.classListService.getClasses().subscribe((classList) => {
-      console.log(classList);
-      this.classList = classList;
-    })
-  }
-
   deleteClass(element: any) {
-    this.classList = this.classList.filter(cL => cL !== element);
-    this.classListService.deleteClass(element.id).subscribe();
-    this.dataSource.data = this.classList;
+    this.dataSource.data = this.dataSource.data.filter(cL => cL !== element);
+    // Line commented to not remove the entry from database
+    // this.classListService.deleteClass(element.id).subscribe();
   }
 
   applyFilter(event: Event) {
@@ -48,10 +40,10 @@ export class ClassListComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit(): void {
-    this.getClasses();
-    console.log(this.classList);
-    // this.classList = ELEMENT_DATA;
-    this.dataSource.data = this.classList;
+    this.classListService.getClasses().subscribe((response) => {
+      // JSON.parse prevents typescript error
+      this.dataSource.data = JSON.parse(JSON.stringify(response)).data
+    })
   }
 
   ngAfterViewInit(): void {
