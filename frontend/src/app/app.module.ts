@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DetailItemComponent } from './detail-item/detail-item.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   ],
   declarations: [
     AppComponent,
-    ClassListComponent
+    ClassListComponent,
+    DetailItemComponent
   ],
   exports: [],
   providers: [],
