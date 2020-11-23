@@ -1,0 +1,56 @@
+#
+# AWS ECS deploy
+#
+
+on:
+  workflow_dispatch
+
+name: Deploy FRONTEND to Amazon ECS
+
+jobs:
+  frontend-deploy:
+    name: Frontend deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout FRONTEND master
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push FRONTEND image to Amazon ECR
+      working-directory: frontend
+      id: build-frontend
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: const-sw
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -f docker/Dockerfile -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+
+    - name: Fill in the new FRONTEND image ID in the Amazon ECS task definition
+      id: task-def-frontend
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: frontend/aws-task-definition.json
+        container-name: front-aulas
+        image: ${{ steps.build-frontend.outputs.image }}
+
+    - name: Deploy Amazon ECS FRONTEND task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def-frontend.outputs.task-definition }}
+        service: front-aulas-service
+        cluster: const-sw
+        wait-for-service-stability: true
