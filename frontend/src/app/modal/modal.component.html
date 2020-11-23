@@ -1,27 +1,53 @@
 <ng-template [ngIf]="data" [ngIfElse]="add">
     <div mat-dialog-content>
-        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form">
-            <span class="title">Detalhes</span>
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, 'EDIT')" class="form">
+            <span class="title">Edição</span>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="date" placeholder="Data" value="{{data.date}}" #input>
+                <input formControlName="date" matInput placeholder="Data" #input>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="room" placeholder="Sala" value="{{data.room.number}}" #input>
+                <mat-label>Sala</mat-label>
+                <mat-select [(value)]="selectedRoom">
+                    <mat-option *ngFor="let room of rooms" value="{{room.number}}">
+                        {{room.number}}
+                    </mat-option>
+                  </mat-select>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="description" placeholder="Descrição" value="{{data.description}}" #input>
+                <input matInput formControlName="description" placeholder="Descrição" #input>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="content" placeholder="Conteúdo" value="{{data.content.name}}" #input>
+                <mat-label>Conteúdo</mat-label>
+                <mat-select [(value)]="selectedContent">
+                    <mat-option *ngFor="let content of contents" value="{{content.name}}">
+                        {{content.name}}
+                    </mat-option>
+                  </mat-select>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="evaluation" placeholder="Avaliação" value="{{data.evaluation.nome}}" #input>
+                <mat-label>Avaliação</mat-label>
+                <mat-select [(value)]="selectedEvaluation">
+                    <mat-option *ngFor="let evaluation of evaluations" value="{{evaluation.nome}}">
+                        {{evaluation.nome}}
+                    </mat-option>
+                  </mat-select>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="team" placeholder="Turma" value="{{data.team[0].numero}}" #input>
+                <mat-label>Turma</mat-label>
+                <mat-select [(value)]="selectedTeam">
+                    <mat-option *ngFor="let team of teams" value="{{team[0].numero}}">
+                        {{team[0].numero}}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
+
             <div class="buttons">
-                <button mat-stroked-button color="primary">Cancelar</button>
                 <button type="submit" mat-raised-button color="primary" class="second-button">Salvar</button>
             </div>
         </form>
@@ -30,29 +56,55 @@
    
 <ng-template #add>
     <div mat-dialog-content>
-        <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="form">
-            <span class="title">Detalhes</span>
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value, 'ADD')" class="form">
+            <span class="title">Criação</span>
+
             <mat-form-field appearance="legacy">
                 <input formControlName="date" matInput placeholder="Data" #input>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="room" placeholder="Sala" #input>
+                <mat-label>Sala</mat-label>
+                <mat-select formControlName="room">
+                    <mat-option *ngFor="let room of rooms" [value]="room">
+                        {{room.number}}
+                    </mat-option>
+                  </mat-select>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
                 <input matInput formControlName="description" placeholder="Descrição" #input>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="content" placeholder="Conteúdo" #input>
+                <mat-label>Conteúdo</mat-label>
+                <mat-select formControlName="content">
+                    <mat-option *ngFor="let content of contents" [value]="content">
+                        {{content.name}}
+                    </mat-option>
+                  </mat-select>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="evaluation" placeholder="Avaliação" #input>
+                <mat-label>Avaliação</mat-label>
+                <mat-select formControlName="evaluation">
+                    <mat-option *ngFor="let evaluation of evaluations" [value]="evaluation">
+                        {{evaluation.nome}}
+                    </mat-option>
+                  </mat-select>
             </mat-form-field>
+
             <mat-form-field appearance="legacy">
-                <input matInput formControlName="team" placeholder="Turma" #input>
+                <mat-label>Turma</mat-label>
+                <mat-select formControlName="team">
+                    <mat-option *ngFor="let team of teams" [value]="team">
+                        {{team[0].numero}}
+                    </mat-option>
+                  </mat-select>
             </mat-form-field>
+            
             <div class="buttons">
-                <button mat-stroked-button color="primary">Cancelar</button>
-                <button mat-raised-button color="primary" class="second-button">Salvar</button>
+                <button type="submit" mat-raised-button color="primary" class="second-button">Salvar</button>
             </div>
         </form>
     </div>

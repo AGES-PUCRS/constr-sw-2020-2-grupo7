@@ -22,8 +22,8 @@ export class ClassListService {
         return this.http.delete(`${this.url}/classes/${id}`)
     }
 
-    getSpecificClass(id: string) {
-        return this.http.get(`${this.url}/classes/${id}?expanded=team&expanded=content&expanded=room&expanded=evaluation`)
+    getSpecificClass(id: string) { //&expanded=evaluation&expanded=team&expanded=content
+        return this.http.get(`${this.url}/classes/${id}?expanded=room`)
     }
 }
 
