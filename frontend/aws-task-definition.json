@@ -1,0 +1,23 @@
+{
+    "containerDefinitions": [
+        {
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "containerPort": 80
+                }
+            ],
+            "cpu": 10,
+            "memory": 300,
+            "name": "front-aulas"
+        }
+    ],
+    "family": "start-grupo7-front-aulas",
+    "inferenceAccelerators": [],
+    "volumes": [],
+    "placementConstraints": [],
+    "memory": null,
+    "cpu": null,
+    "tags": []
+}

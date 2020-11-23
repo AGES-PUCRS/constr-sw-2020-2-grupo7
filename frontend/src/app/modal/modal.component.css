@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url("../../assets/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-direction: column;
+    background-color: #F0F0F5;
+}
+
+.header {
+    background-color: #FFF;
+    position: absolute;
+    top: 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px;
+}
+
+button {
+    width: 100px;
+}
+
+.mat-form-field {
+    width: 100%;
+    max-width: 300px;
+}
+
+.title {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
