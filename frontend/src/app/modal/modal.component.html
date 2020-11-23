@@ -1,28 +1,28 @@
 <ng-template [ngIf]="data" [ngIfElse]="add">
     <div mat-dialog-content>
-        <form class="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form">
             <span class="title">Detalhes</span>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Data" value="{{data.date}}" #input>
+                <input matInput formControlName="date" placeholder="Data" value="{{data.date}}" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Sala" value="{{data.room.number}}" #input>
+                <input matInput formControlName="room" placeholder="Sala" value="{{data.room.number}}" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Descrição" value="{{data.description}}" #input>
+                <input matInput formControlName="description" placeholder="Descrição" value="{{data.description}}" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Conteúdo" value="{{data.content.name}}" #input>
+                <input matInput formControlName="content" placeholder="Conteúdo" value="{{data.content.name}}" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Avaliação" value="{{data.evaluation.nome}}" #input>
+                <input matInput formControlName="evaluation" placeholder="Avaliação" value="{{data.evaluation.nome}}" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Turma" value="{{data.team[0].numero}}" #input>
+                <input matInput formControlName="team" placeholder="Turma" value="{{data.team[0].numero}}" #input>
             </mat-form-field>
             <div class="buttons">
                 <button mat-stroked-button color="primary">Cancelar</button>
-                <button mat-raised-button color="primary" class="second-button">Salvar</button>
+                <button type="submit" mat-raised-button color="primary" class="second-button">Salvar</button>
             </div>
         </form>
     </div>
@@ -30,25 +30,25 @@
    
 <ng-template #add>
     <div mat-dialog-content>
-        <form class="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="form">
             <span class="title">Detalhes</span>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Data" #input>
+                <input formControlName="date" matInput placeholder="Data" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Sala" #input>
+                <input matInput formControlName="room" placeholder="Sala" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Descrição" #input>
+                <input matInput formControlName="description" placeholder="Descrição" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Conteúdo" #input>
+                <input matInput formControlName="content" placeholder="Conteúdo" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Avaliação" #input>
+                <input matInput formControlName="evaluation" placeholder="Avaliação" #input>
             </mat-form-field>
             <mat-form-field appearance="legacy">
-                <input matInput placeholder="Turma" #input>
+                <input matInput formControlName="team" placeholder="Turma" #input>
             </mat-form-field>
             <div class="buttons">
                 <button mat-stroked-button color="primary">Cancelar</button>

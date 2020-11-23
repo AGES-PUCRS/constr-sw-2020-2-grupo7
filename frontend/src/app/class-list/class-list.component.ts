@@ -63,7 +63,7 @@ export class ClassListComponent implements OnInit, AfterViewInit{
   }
 
   openDialog(data: Class[]) {
-    console.log(data)
+    // console.log(data)
     this.dialog.open(ModalComponent, {data});
   }
 
