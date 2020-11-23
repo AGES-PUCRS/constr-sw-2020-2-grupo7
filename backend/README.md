@@ -18,7 +18,7 @@ $ docker exec -it api-alunos bash
 
 **Check docs**
 
-When the service is running, go to http://localhost:3000/api/docs or [check production](http://ec2-3-236-239-112.compute-1.amazonaws.com:3000/api/docs/#/alunos).
+When the service is running, go to http://localhost:3000/api/docs or [check production](http://ec2-34-228-52-17.compute-1.amazonaws.com:3000/api/docs/#/alunos).
 
 ## Deploy
 Use github actions. 
