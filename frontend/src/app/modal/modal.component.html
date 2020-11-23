@@ -9,7 +9,7 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>Sala</mat-label>
-                <mat-select [(value)]="selectedRoom">
+                <mat-select [(value)]="selectedRoom.number">
                     <mat-option *ngFor="let room of rooms" value="{{room.number}}">
                         {{room.number}}
                     </mat-option>
@@ -22,7 +22,7 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>Conteúdo</mat-label>
-                <mat-select [(value)]="selectedContent">
+                <mat-select [(value)]="selectedContent.name">
                     <mat-option *ngFor="let content of contents" value="{{content.name}}">
                         {{content.name}}
                     </mat-option>
@@ -31,7 +31,7 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>Avaliação</mat-label>
-                <mat-select [(value)]="selectedEvaluation">
+                <mat-select [(value)]="selectedEvaluation.nome">
                     <mat-option *ngFor="let evaluation of evaluations" value="{{evaluation.nome}}">
                         {{evaluation.nome}}
                     </mat-option>
@@ -40,7 +40,7 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>Turma</mat-label>
-                <mat-select [(value)]="selectedTeam">
+                <mat-select [(value)]="selectedTeam.numero">
                     <mat-option *ngFor="let team of teams" value="{{team[0].numero}}">
                         {{team[0].numero}}
                     </mat-option>
@@ -62,6 +62,8 @@
             <mat-form-field appearance="legacy">
                 <input formControlName="date" matInput placeholder="Data" #input>
             </mat-form-field>
+
+
 
             <mat-form-field appearance="legacy">
                 <mat-label>Sala</mat-label>
@@ -85,14 +87,21 @@
                   </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="legacy">
+            <!-- <mat-form-field appearance="legacy">
                 <mat-label>Avaliação</mat-label>
                 <mat-select formControlName="evaluation">
                     <mat-option *ngFor="let evaluation of evaluations" [value]="evaluation">
                         {{evaluation.nome}}
                     </mat-option>
                   </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
+                        
+            <mat-selection-list class="list" formControlName="evaluation">
+                <mat-label class="label">Avaliações</mat-label>
+                <mat-list-option color="primary" *ngFor="let evaluation of evaluations" [value]="evaluation">
+                  {{evaluation.nome}}
+                </mat-list-option>
+              </mat-selection-list>
 
             <mat-form-field appearance="legacy">
                 <mat-label>Turma</mat-label>

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Class } from '../class-list/class';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { ModalService } from './modal.service';
@@ -23,7 +23,7 @@ export class ModalComponent implements OnInit {
   selectedContent: string;
   selectedEvaluation: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Class[], private modalService: ModalService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Class[], private modalService: ModalService,private dialogRef: MatDialogRef<ModalComponent>) {
     // console.log(data)
   }
 
@@ -58,10 +58,10 @@ export class ModalComponent implements OnInit {
     this.getTeams();
 
     if (!!this.data) {
-      this.selectedRoom = this.data["room"]["number"];
-      this.selectedTeam = this.data["team"][0]["numero"];
-      this.selectedEvaluation = this.data["evaluation"]["nome"];
-      this.selectedContent = this.data["content"]["name"];
+      this.selectedRoom = this.data["room"];
+      this.selectedTeam = this.data["team"][0];
+      this.selectedEvaluation = this.data["evaluation"];
+      this.selectedContent = this.data["content"];
 
       this.form = new FormGroup({
         date: new FormControl(this.data["date"]),
@@ -85,22 +85,36 @@ export class ModalComponent implements OnInit {
   }
 
   onSubmit(data, type) {
-    event.preventDefault()
-    const body = {
-      date: data.date,
-      room: data.room._id,
-      description: data.description,
-      content: data.content._id,
-      evaluation: data.evaluation._id,
-      team: data.team._id,
-    }
-    console.log(data)
+    // event.preventDefault()
+    // console.log(data)
+    // console.log(this.selectedRoom)
+    
     if(type == 'ADD') {  
-      this.modalService.createClass(body).subscribe();
+      const body = {
+        date: data.date,
+        room: data.room._id,
+        description: data.description,
+        content: data.content._id,
+        evaluation: data.evaluation._id,
+        team: data.team._id,
+      }
+
+      // this.modalService.createClass(body).subscribe();
     }
     else if (type == 'EDIT') {
-      this.modalService.updateClass(body, this.data["_id"]).subscribe();
+      const body = {
+        date: data.date,
+        room: this.selectedRoom['_id'],
+        description: data.description,
+        content: this.selectedContent['_id'],
+        evaluation: this.selectedRoom['_id'],
+        team: this.selectedTeam['_id'],
+      }
+
+      // this.modalService.updateClass(body, this.data["_id"]).subscribe();
     }
+
+    this.dialogRef.close();
   }
 
 }

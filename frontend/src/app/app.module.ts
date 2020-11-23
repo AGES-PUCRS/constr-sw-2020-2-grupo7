@@ -17,7 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSelectModule } from '@angular/material/select'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalComponent } from './modal/modal.component';
-
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   imports: [
@@ -33,6 +33,7 @@ import { ModalComponent } from './modal/modal.component';
     FormsModule,
     MatPaginatorModule,
     MatToolbarModule,
+    MatListModule,
     ReactiveFormsModule
   ],
   declarations: [
