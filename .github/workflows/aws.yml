@@ -12,10 +12,6 @@ jobs:
   backend-deploy:
     name: Backend deploy
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: backend
 
     steps:
     - name: Checkout
@@ -33,6 +29,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push BACKEND image to Amazon ECR
+      working-directory: backend
       id: build-backend
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -47,7 +44,7 @@ jobs:
       id: task-def-backend
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: aws-task-definition.json
+        task-definition: backend/aws-task-definition.json
         container-name: api-alunos
         image: ${{ steps.build-backend.outputs.image }}
 
@@ -63,10 +60,6 @@ jobs:
   frontend-deploy:
     name: Frontend deploy
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: frontend
     
     steps:
     - name: Checkout
@@ -84,6 +77,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push FRONTEND image to Amazon ECR
+      working-directory: frontend
       id: build-frontend
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -98,7 +92,7 @@ jobs:
       id: task-def-frontend
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: aws-task-definition.json
+        task-definition: frontend/aws-task-definition.json
         container-name: front-aulas
         image: ${{ steps.build-frontend.outputs.image }}
 
