@@ -47,7 +47,7 @@ jobs:
         id: task-def-backend
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: aws-task-definition.json
+          task-definition: ./aws-task-definition.json
           container-name: api-alunos
           image: ${{ steps.build-backend.outputs.image }}
 
@@ -98,7 +98,7 @@ jobs:
         id: task-def-frontend
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: aws-task-definition.json
+          task-definition: ./aws-task-definition.json
           container-name: front-aulas
           image: ${{ steps.build-frontend.outputs.image }}
       
