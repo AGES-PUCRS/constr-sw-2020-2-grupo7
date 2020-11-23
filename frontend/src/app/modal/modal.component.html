@@ -63,8 +63,6 @@
                 <input formControlName="date" matInput placeholder="Data" #input>
             </mat-form-field>
 
-
-
             <mat-form-field appearance="legacy">
                 <mat-label>Sala</mat-label>
                 <mat-select formControlName="room">
@@ -87,21 +85,14 @@
                   </mat-select>
             </mat-form-field>
 
-            <!-- <mat-form-field appearance="legacy">
+            <mat-form-field appearance="legacy">
                 <mat-label>Avaliação</mat-label>
                 <mat-select formControlName="evaluation">
                     <mat-option *ngFor="let evaluation of evaluations" [value]="evaluation">
                         {{evaluation.nome}}
                     </mat-option>
                   </mat-select>
-            </mat-form-field> -->
-                        
-            <mat-selection-list class="list" formControlName="evaluation">
-                <mat-label class="label">Avaliações</mat-label>
-                <mat-list-option color="primary" *ngFor="let evaluation of evaluations" [value]="evaluation">
-                  {{evaluation.nome}}
-                </mat-list-option>
-              </mat-selection-list>
+            </mat-form-field>
 
             <mat-form-field appearance="legacy">
                 <mat-label>Turma</mat-label>
