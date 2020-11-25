@@ -50,7 +50,8 @@
             </mat-form-field>
 
             <div class="buttons">
-                <button type="submit" mat-raised-button color="primary" class="second-button">Salvar</button>
+                <button mat-button color="primary" class="first-button" [mat-dialog-close]="false">Cancelar</button>
+                <button type="submit" mat-raised-button color="primary">Salvar</button>
             </div>
         </form>
     </div>
@@ -115,6 +116,7 @@
             </mat-form-field>
             
             <div class="buttons">
+                <button mat-button color="primary" [mat-dialog-close]="false" class="first-button">Cancelar</button>
                 <button type="submit" mat-raised-button color="primary" class="second-button">Salvar</button>
             </div>
         </form>

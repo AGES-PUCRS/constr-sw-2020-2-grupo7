@@ -54,3 +54,7 @@ button {
 .label {
     margin-bottom: 5px;
 }
+
+.first-button {
+    margin-right: 10px;
+}
