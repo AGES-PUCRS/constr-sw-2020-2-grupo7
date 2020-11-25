@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Class } from '../class-list/class';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalService } from './modal.service';
 
 
@@ -14,8 +14,8 @@ export class ModalComponent implements OnInit {
 
   form: FormGroup
   rooms: [];
-  teams: [];
-  contents: [];
+  teams: any;
+  contents: any;
   evaluations: [];
 
   selectedRoom: string;
@@ -41,13 +41,13 @@ export class ModalComponent implements OnInit {
 
   getTeams() {
     this.modalService.getAllTeams().subscribe(response => {
-      this.teams = response["data"];
+      this.teams = response;
     })
   }
 
   getContents() {
     this.modalService.getAllContents().subscribe(response => {
-      this.contents = response["data"];
+      this.contents = response;
     })
   }
 
@@ -64,9 +64,9 @@ export class ModalComponent implements OnInit {
       this.selectedContent = this.data["content"];
 
       this.form = new FormGroup({
-        date: new FormControl(this.data["date"]),
+        date: new FormControl(this.data["date"], [Validators.required]),
         room: new FormControl(),
-        description: new FormControl(this.data["description"]),
+        description: new FormControl(this.data["description"], [Validators.required]),
         evaluation: new FormControl(),
         team: new FormControl(),
         content: new FormControl(),
@@ -74,12 +74,12 @@ export class ModalComponent implements OnInit {
     }
     else {
       this.form = new FormGroup({
-        date: new FormControl(''),
-        room: new FormControl(''),
-        description: new FormControl(''),
-        content: new FormControl(''),
-        evaluation: new FormControl(''),
-        team: new FormControl(''),
+        date: new FormControl('', [Validators.required]),
+        room: new FormControl('', [Validators.required]),
+        description: new FormControl('', [Validators.required]),
+        content: new FormControl('', [Validators.required]),
+        evaluation: new FormControl('', [Validators.required]),
+        team: new FormControl('', [Validators.required]),
       });
     }
   }
@@ -98,6 +98,8 @@ export class ModalComponent implements OnInit {
         evaluation: data.evaluation._id,
         team: data.team._id,
       }
+
+      console.log(body)
 
       // this.modalService.createClass(body).subscribe();
     }

@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select'
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalComponent } from './modal/modal.component';
 import {MatListModule} from '@angular/material/list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   imports: [
@@ -34,6 +36,8 @@ import {MatListModule} from '@angular/material/list';
     MatPaginatorModule,
     MatToolbarModule,
     MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule
   ],
   declarations: [
@@ -42,7 +46,9 @@ import {MatListModule} from '@angular/material/list';
     ModalComponent
   ],
   exports: [],
-  providers: [],
+  providers: [
+    MatDatepickerModule, 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
