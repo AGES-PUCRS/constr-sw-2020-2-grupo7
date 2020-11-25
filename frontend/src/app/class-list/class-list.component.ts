@@ -5,6 +5,8 @@ import { ClassListService } from './class-list.service';
 import { Class } from './class';
 import {MatDialog} from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
+import { ConfirmComponent } from '../confirm/confirm.component';
+
 
 
 // const ELEMENT_DATA: Class[] = [
@@ -26,15 +28,20 @@ export class ClassListComponent implements OnInit, AfterViewInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null;
   
-  constructor(private classListService: ClassListService, public dialog: MatDialog) {
+  constructor(private classListService: ClassListService, public dialog: MatDialog, public confirmDialog: MatDialog) {
     this.dataSource = new MatTableDataSource()
     this.paginator = null;
   }
 
   deleteClass(element: any) {
-    this.dataSource.data = this.dataSource.data.filter(cL => cL !== element);
-    // Line commented to not remove the entry from database
-    // this.classListService.deleteClass(element.id).subscribe();
+    let dialogRef = this.confirmDialog.open(ConfirmComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data = this.dataSource.data.filter(cL => cL !== element);
+        // Line commented to not remove the entry from database
+        // this.classListService.deleteClass(element.id).subscribe();
+      }
+    });
   }
 
   applyFilter(event: Event) {
