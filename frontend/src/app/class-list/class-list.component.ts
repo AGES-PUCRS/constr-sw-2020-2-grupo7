@@ -56,7 +56,16 @@ export class ClassListComponent implements OnInit, AfterViewInit{
       JSON.parse(JSON.stringify(response)).data.map(item => {
         this.classListService.getSpecificClass(item._id).subscribe((response) => {
           const query = JSON.parse(JSON.stringify(response)).data
-          classes.push(query)
+          const body = {
+            content: query.content,
+            date: query.date,
+            evaluation: query.evaluation,
+            description: query.description,
+            room: query.room,
+            team: query.team
+          }
+          console.log(body)
+          classes.push(body)
           this.dataSource.data = classes
         })
       })

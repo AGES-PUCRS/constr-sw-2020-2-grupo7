@@ -59,7 +59,7 @@ export class ModalComponent implements OnInit {
 
     if (!!this.data) {
       this.selectedRoom = this.data["room"];
-      this.selectedTeam = this.data["team"][0];
+      this.selectedTeam = this.data["team"];
       this.selectedEvaluation = this.data["evaluation"];
       this.selectedContent = this.data["content"];
 

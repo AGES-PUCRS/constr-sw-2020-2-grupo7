@@ -4,11 +4,6 @@
             <span class="title">Edição</span>
 
             <mat-form-field appearance="legacy">
-                <input formControlName="date" matInput placeholder="Data" #input>
-                <mat-error>Campo obrigatório</mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="legacy">
                 <mat-label>Sala</mat-label>
                 <mat-select [(value)]="selectedRoom.number">
                     <mat-option *ngFor="let room of rooms" value="{{room.number}}">

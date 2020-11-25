@@ -23,6 +23,7 @@ export class ModalService {
     }
 
     createClass(form: object): Observable<Class[]> {
+        console.log(form)
         return this.http.post<Class[]>(`${this.classUrl}/classes`, form);
     }
 
