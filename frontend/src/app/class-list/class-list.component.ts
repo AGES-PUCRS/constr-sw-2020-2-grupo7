@@ -51,27 +51,32 @@ export class ClassListComponent implements OnInit, AfterViewInit{
 
   getSpecific() {
     let classes = []
-    this.classListService.getClasses().subscribe((response) => {
-      // JSON.parse prevents typescript error
-      JSON.parse(JSON.stringify(response)).data.map(item => {
-        this.classListService.getSpecificClass(item._id).subscribe((response) => {
-          const query = JSON.parse(JSON.stringify(response)).data
-          const body = {
-            content: query.content,
-            date: query.date,
-            evaluation: query.evaluation,
-            description: query.description,
-            room: query.room,
-            team: query.team
-          }
-          console.log(body)
-          classes.push(body)
-          this.dataSource.data = classes
+    try {
+      this.classListService.getClasses().subscribe((response) => {
+        // JSON.parse prevents typescript error
+        JSON.parse(JSON.stringify(response)).data.map(item => {
+          this.classListService.getSpecificClass(item._id).subscribe((response) => {
+            const query = JSON.parse(JSON.stringify(response)).data
+            const body = {
+              content: query.content,
+              date: query.date,
+              evaluation: query.evaluation,
+              description: query.description,
+              room: query.room,
+              team: query.team
+            }
+            console.log(body)
+            classes.push(body)
+            this.dataSource.data = classes
+          })
         })
+  
       })
-
-    })
-    return classes
+      return classes
+    } catch(e) {
+      console.log('error')
+      
+    }
   }
 
   ngOnInit(): void { 
@@ -80,7 +85,12 @@ export class ClassListComponent implements OnInit, AfterViewInit{
 
   openDialog(data: Class[]) {
     // console.log(data)
-    this.dialog.open(ModalComponent, {data});
+    let dialogRef = this.dialog.open(ModalComponent, {data});
+
+    // update dataSource
+    dialogRef.afterClosed().subscribe(result => {
+      this.getSpecific();
+    });
   }
 
   ngAfterViewInit(): void {

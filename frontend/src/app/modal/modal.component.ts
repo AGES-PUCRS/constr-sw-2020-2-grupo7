@@ -90,6 +90,7 @@ export class ModalComponent implements OnInit {
     // console.log(this.selectedRoom)
     
     if(type == 'ADD') {  
+
       const body = {
         date: data.date,
         room: data.room._id,
@@ -101,7 +102,8 @@ export class ModalComponent implements OnInit {
 
       console.log(body)
 
-      // this.modalService.createClass(body).subscribe();
+      const response = this.modalService.createClass(body).subscribe();
+      console.log(response)
     }
     else if (type == 'EDIT') {
       const body = {
