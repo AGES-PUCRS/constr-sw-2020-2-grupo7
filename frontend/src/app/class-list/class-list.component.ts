@@ -54,23 +54,24 @@ export class ClassListComponent implements OnInit, AfterViewInit{
     try {
       this.classListService.getClasses().subscribe((response) => {
         // JSON.parse prevents typescript error
-        JSON.parse(JSON.stringify(response)).data.map(item => {
-          this.classListService.getSpecificClass(item._id).subscribe((response) => {
-            const query = JSON.parse(JSON.stringify(response)).data
-            const body = {
-              content: query.content,
-              date: query.date,
-              evaluation: query.evaluation,
-              description: query.description,
-              room: query.room,
-              team: query.team
-            }
-            console.log(body)
-            classes.push(body)
-            this.dataSource.data = classes
-          })
-        })
-  
+        // JSON.parse(JSON.stringify(response)).data.map(item => {
+        //   this.classListService.getSpecificClass(item._id).subscribe((response) => {
+        //     console.log(response)
+        //     const query = JSON.parse(JSON.stringify(response)).data
+        //     const body = {
+        //       content: query.content,
+        //       date: query.date,
+        //       evaluation: query.evaluation,
+        //       description: query.description,
+        //       room: query.room,
+        //       team: query.team
+        //     }
+        //     console.log(body)
+        //     classes.push(body)
+        //     this.dataSource.data = classes
+        //   })
+        // })
+        this.dataSource.data = response['data']
       })
       return classes
     } catch(e) {

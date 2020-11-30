@@ -11,7 +11,7 @@ export class ClassListService {
     url: string;
 
     constructor(private http: HttpClient) {
-        this.url = "http://ec2-18-218-177-125.us-east-2.compute.amazonaws.com:3000/api/v1";
+        this.url = "http://ec2-3-15-145-30.us-east-2.compute.amazonaws.com:3000/api/v1";
     }
 
     getClasses(): Observable<Class[]> {
@@ -22,8 +22,8 @@ export class ClassListService {
         return this.http.delete(`${this.url}/classes/${id}`)
     }
 
-    getSpecificClass(id: string) { //
-        return this.http.get(`${this.url}/classes/${id}?expanded=room&expanded=evaluation&expanded=team&expanded=content`)
+    getSpecificClass(id: string) {
+        return this.http.get(`${this.url}/classes/${id}?expanded=team&expanded=content&expanded=evaluation&expanded=room`)
     }
 }
 

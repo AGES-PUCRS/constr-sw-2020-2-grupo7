@@ -13,7 +13,7 @@ import { ModalService } from './modal.service';
 export class ModalComponent implements OnInit {
 
   form: FormGroup
-  rooms: [];
+  rooms: any;
   teams: any;
   contents: any;
   evaluations: [];
@@ -29,7 +29,7 @@ export class ModalComponent implements OnInit {
 
   getRooms() {
     this.modalService.getAllRooms().subscribe(response => {
-      this.rooms = response["data"];
+      this.rooms = response;
     })
   }
 
@@ -100,7 +100,7 @@ export class ModalComponent implements OnInit {
         team: data.team._id,
       }
 
-      console.log(body)
+      // console.log(body)
 
       const response = this.modalService.createClass(body).subscribe();
       console.log(response)
@@ -115,7 +115,7 @@ export class ModalComponent implements OnInit {
         team: this.selectedTeam['_id'],
       }
 
-      // this.modalService.updateClass(body, this.data["_id"]).subscribe();
+      this.modalService.updateClass(body, this.data["_id"]).subscribe();
     }
 
     this.dialogRef.close();
