@@ -34,12 +34,13 @@ export class ClassListComponent implements OnInit, AfterViewInit{
   }
 
   deleteClass(element: any) {
+    console.log(element)
     let dialogRef = this.confirmDialog.open(ConfirmComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.dataSource.data = this.dataSource.data.filter(cL => cL !== element);
         // Line commented to not remove the entry from database
-        // this.classListService.deleteClass(element.id).subscribe();
+        this.classListService.deleteClass(element._id).subscribe();
       }
     });
   }
@@ -54,29 +55,30 @@ export class ClassListComponent implements OnInit, AfterViewInit{
     try {
       this.classListService.getClasses().subscribe((response) => {
         // JSON.parse prevents typescript error
-        // JSON.parse(JSON.stringify(response)).data.map(item => {
-        //   this.classListService.getSpecificClass(item._id).subscribe((response) => {
-        //     console.log(response)
-        //     const query = JSON.parse(JSON.stringify(response)).data
-        //     const body = {
-        //       content: query.content,
-        //       date: query.date,
-        //       evaluation: query.evaluation,
-        //       description: query.description,
-        //       room: query.room,
-        //       team: query.team
-        //     }
-        //     console.log(body)
-        //     classes.push(body)
-        //     this.dataSource.data = classes
-        //   })
-        // })
+        JSON.parse(JSON.stringify(response)).data.map(item => {
+          console.log(item)
+          this.classListService.getSpecificClass(item._id).subscribe((response) => {
+            console.log(response)
+            const query = JSON.parse(JSON.stringify(response)).data
+            const body = {
+              content: query.content,
+              date: query.date,
+              evaluation: query.evaluation,
+              description: query.description,
+              room: query.room,
+              team: query.team
+            }
+            console.log(body)
+            classes.push(body)
+            this.dataSource.data = classes
+          })
+        })
+        console.log(response)
         this.dataSource.data = response['data']
       })
       return classes
     } catch(e) {
       console.log('error')
-      
     }
   }
 

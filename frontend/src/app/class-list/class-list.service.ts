@@ -26,4 +26,3 @@ export class ClassListService {
         return this.http.get(`${this.url}/classes/${id}?expanded=team&expanded=content&expanded=evaluation&expanded=room`)
     }
 }
-

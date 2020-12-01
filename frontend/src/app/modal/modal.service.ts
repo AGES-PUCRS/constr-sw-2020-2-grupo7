@@ -11,11 +11,13 @@ export class ModalService {
     classUrl: string;
     teamUrl: string;
     contentUrl: string;
+    roomsUrl: string;
 
     constructor(private http: HttpClient) {
         this.classUrl = "http://ec2-3-15-145-30.us-east-2.compute.amazonaws.com:3000/api/v1";
-        this.teamUrl = "http://ec2-34-238-114-89.compute-1.amazonaws.com:3000";
-        this.contentUrl = "http://3.21.130.129:5000"; 
+        this.teamUrl = "http://ec2-34-238-241-74.compute-1.amazonaws.com:3000";
+        this.contentUrl = "http://3.128.18.231:5000";
+        this.roomsUrl = "http://ec2-3-23-106-145.us-east-2.compute.amazonaws.com:3001";
     }
     
     updateClass(form: object, id: string): Observable<Class[]> {
@@ -28,7 +30,7 @@ export class ModalService {
     }
 
     getAllRooms() {
-        return this.http.get(`http://ec2-3-23-106-145.us-east-2.compute.amazonaws.com:3001/room`)
+        return this.http.get(`${this.roomsUrl}/room`)
     }
 
     getAllEvaluations() {

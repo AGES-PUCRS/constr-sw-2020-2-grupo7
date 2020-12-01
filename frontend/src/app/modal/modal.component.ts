@@ -41,6 +41,7 @@ export class ModalComponent implements OnInit {
 
   getTeams() {
     this.modalService.getAllTeams().subscribe(response => {
+      console.log(response)
       this.teams = response;
     })
   }

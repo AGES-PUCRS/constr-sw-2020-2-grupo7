@@ -16,7 +16,7 @@
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
 
             <ng-container matColumnDef="id">
-            <td style="display:none;" mat-cell *matCellDef="let element">{{element.id}}</td>
+            <td style="display:none;" mat-cell *matCellDef="let element">{{element._id}}</td>
             </ng-container>
 
             <ng-container matColumnDef="date">
