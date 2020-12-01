@@ -5,8 +5,8 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>Sala</mat-label>
-                <mat-select [(value)]="selectedRoom.number">
-                    <mat-option *ngFor="let room of rooms" value="{{room.number}}">
+                <mat-select formControlName="room">
+                    <mat-option *ngFor="let room of rooms" value="{{room._id}}">
                         {{room.number}}
                     </mat-option>
                   </mat-select>
@@ -19,8 +19,8 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>Conteúdo</mat-label>
-                <mat-select [(value)]="selectedContent.name">
-                    <mat-option *ngFor="let content of contents" value="{{content.name}}">
+                <mat-select formControlName="content">
+                    <mat-option *ngFor="let content of contents" value="{{content._id}}">
                         {{content.name}}
                     </mat-option>
                   </mat-select>
@@ -28,8 +28,8 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>Avaliação</mat-label>
-                <mat-select [(value)]="selectedEvaluation.nome">
-                    <mat-option *ngFor="let evaluation of evaluations" value="{{evaluation.nome}}">
+                <mat-select formControlName="evaluation">
+                    <mat-option *ngFor="let evaluation of evaluations" value="{{evaluation._id}}">
                         {{evaluation.nome}}
                     </mat-option>
                   </mat-select>
@@ -37,8 +37,8 @@
 
             <mat-form-field appearance="legacy">
                 <mat-label>Turma</mat-label>
-                <mat-select [(value)]="selectedTeam.numero">
-                    <mat-option *ngFor="let team of teams" value="{{team.numero}}">
+                <mat-select formControlName="team">
+                    <mat-option *ngFor="let team of teams" value="{{team._id}}">
                         {{team.numero}}
                     </mat-option>
                 </mat-select>
@@ -68,7 +68,7 @@
             <mat-form-field appearance="legacy">
                 <mat-label>Sala</mat-label>
                 <mat-select formControlName="room">
-                    <mat-option *ngFor="let room of rooms" [value]="room">
+                    <mat-option *ngFor="let room of rooms" [value]="room._id">
                         {{room.number}}
                     </mat-option>
                   </mat-select>
@@ -83,7 +83,7 @@
             <mat-form-field appearance="legacy">
                 <mat-label>Conteúdo</mat-label>
                 <mat-select formControlName="content">
-                    <mat-option *ngFor="let content of contents" [value]="content">
+                    <mat-option *ngFor="let content of contents" [value]="content._id">
                         {{content.name}}
                     </mat-option>
                   </mat-select>
@@ -93,7 +93,7 @@
             <mat-form-field appearance="legacy">
                 <mat-label>Avaliação</mat-label>
                 <mat-select formControlName="evaluation">
-                    <mat-option *ngFor="let evaluation of evaluations" [value]="evaluation">
+                    <mat-option *ngFor="let evaluation of evaluations" [value]="evaluation._id">
                         {{evaluation.nome}}
                     </mat-option>
                   </mat-select>
@@ -103,7 +103,7 @@
             <mat-form-field appearance="legacy">
                 <mat-label>Turma</mat-label>
                 <mat-select formControlName="team">
-                    <mat-option *ngFor="let team of teams" [value]="team">
+                    <mat-option *ngFor="let team of teams" [value]="team._id">
                         {{team.numero}}
                     </mat-option>
                   </mat-select>

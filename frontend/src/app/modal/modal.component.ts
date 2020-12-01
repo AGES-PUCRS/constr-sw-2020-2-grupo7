@@ -12,19 +12,23 @@ import { ModalService } from './modal.service';
 })
 export class ModalComponent implements OnInit {
 
-  form: FormGroup
   rooms: any;
   teams: any;
   contents: any;
   evaluations: [];
 
-  selectedRoom: string;
-  selectedTeam: string;
-  selectedContent: string;
-  selectedEvaluation: string;
+  form = new FormGroup({
+    date: new FormControl('', [Validators.required]),
+    room: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    content: new FormControl('', [Validators.required]),
+    evaluation: new FormControl('', [Validators.required]),
+    team: new FormControl('', [Validators.required]),
+  });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Class[], private modalService: ModalService,private dialogRef: MatDialogRef<ModalComponent>) {
-    // console.log(data)
+    this.test()
+    console.log(this.form)
   }
 
   getRooms() {
@@ -52,72 +56,39 @@ export class ModalComponent implements OnInit {
     })
   }
 
+  test() {
+    if(!!this.data){
+      this.form.patchValue({
+        room: this.data['room']._id,
+        description: this.data['description'],
+        content: this.data['content']._id,
+        evaluation: this.data['evaluation']._id,
+        team: this.data['team']._id,
+      })
+    }
+  }
+
   ngOnInit(): void {
     this.getEvaluations();
     this.getContents();
     this.getRooms();
     this.getTeams();
 
-    if (!!this.data) {
-      this.selectedRoom = this.data["room"];
-      this.selectedTeam = this.data["team"];
-      this.selectedEvaluation = this.data["evaluation"];
-      this.selectedContent = this.data["content"];
-
-      this.form = new FormGroup({
-        date: new FormControl(this.data["date"], [Validators.required]),
-        room: new FormControl(),
-        description: new FormControl(this.data["description"], [Validators.required]),
-        evaluation: new FormControl(),
-        team: new FormControl(),
-        content: new FormControl(),
-      });
-    }
-    else {
-      this.form = new FormGroup({
-        date: new FormControl('', [Validators.required]),
-        room: new FormControl('', [Validators.required]),
-        description: new FormControl('', [Validators.required]),
-        content: new FormControl('', [Validators.required]),
-        evaluation: new FormControl('', [Validators.required]),
-        team: new FormControl('', [Validators.required]),
-      });
-    }
   }
 
   onSubmit(data, type) {
     // event.preventDefault()
-    // console.log(data)
-    // console.log(this.selectedRoom)
-    
-    if(type == 'ADD') {  
-
-      const body = {
-        date: data.date,
-        room: data.room._id,
-        description: data.description,
-        content: data.content._id,
-        evaluation: data.evaluation._id,
-        team: data.team._id,
-      }
-
-      // console.log(body)
-
-      const response = this.modalService.createClass(body).subscribe();
-      console.log(response)
+    const body = {
+      room: this.form.value.room || 'undefined',
+      description: this.form.value.description || 'undefined',
+      content: this.form.value.content || 'undefined',
+      evaluation: this.form.value.evaluation || 'undefined',
+      team: this.form.value.team || 'undefined',
     }
-    else if (type == 'EDIT') {
-      const body = {
-        date: data.date,
-        room: this.selectedRoom['_id'],
-        description: data.description,
-        content: this.selectedContent['_id'],
-        evaluation: this.selectedRoom['_id'],
-        team: this.selectedTeam['_id'],
-      }
-
-      this.modalService.updateClass(body, this.data["_id"]).subscribe();
-    }
+  
+    type === 'ADD' ? 
+    this.modalService.createClass({ ...body, date: this.form.value.date }).subscribe() : 
+    this.modalService.updateClass(body, this.data['id']).subscribe();
 
     this.dialogRef.close();
   }

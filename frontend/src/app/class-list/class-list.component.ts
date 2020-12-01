@@ -40,7 +40,7 @@ export class ClassListComponent implements OnInit, AfterViewInit{
       if (result) {
         this.dataSource.data = this.dataSource.data.filter(cL => cL !== element);
         // Line commented to not remove the entry from database
-        this.classListService.deleteClass(element._id).subscribe();
+        this.classListService.deleteClass(element.id).subscribe();
       }
     });
   }
@@ -56,9 +56,7 @@ export class ClassListComponent implements OnInit, AfterViewInit{
       this.classListService.getClasses().subscribe((response) => {
         // JSON.parse prevents typescript error
         JSON.parse(JSON.stringify(response)).data.map(item => {
-          console.log(item)
           this.classListService.getSpecificClass(item._id).subscribe((response) => {
-            console.log(response)
             const query = JSON.parse(JSON.stringify(response)).data
             const body = {
               content: query.content,
@@ -66,14 +64,13 @@ export class ClassListComponent implements OnInit, AfterViewInit{
               evaluation: query.evaluation,
               description: query.description,
               room: query.room,
-              team: query.team
+              team: query.team,
+              id: query._id
             }
-            console.log(body)
             classes.push(body)
             this.dataSource.data = classes
           })
         })
-        console.log(response)
         this.dataSource.data = response['data']
       })
       return classes
