@@ -27,7 +27,7 @@ export class ModalComponent implements OnInit {
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Class[], private modalService: ModalService,private dialogRef: MatDialogRef<ModalComponent>) {
-    this.test()
+    this.populate()
   }
 
   getRooms() {
@@ -70,7 +70,7 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  test() {
+  populate() {
     if(!!this.data){
       this.form.patchValue({
         room: this.data['room']._id,
