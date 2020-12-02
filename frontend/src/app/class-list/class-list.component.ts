@@ -34,7 +34,6 @@ export class ClassListComponent implements OnInit, AfterViewInit{
   }
 
   deleteClass(element: any) {
-    console.log(element)
     let dialogRef = this.confirmDialog.open(ConfirmComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -64,7 +63,7 @@ export class ClassListComponent implements OnInit, AfterViewInit{
               evaluation: query.evaluation,
               description: query.description,
               room: query.room,
-              team: query.team,
+              team: JSON.parse(query.team),
               id: query._id
             }
             classes.push(body)
@@ -84,7 +83,6 @@ export class ClassListComponent implements OnInit, AfterViewInit{
   }
 
   openDialog(data: Class[]) {
-    // console.log(data)
     let dialogRef = this.dialog.open(ModalComponent, {data});
 
     // update dataSource

@@ -28,32 +28,46 @@ export class ModalComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Class[], private modalService: ModalService,private dialogRef: MatDialogRef<ModalComponent>) {
     this.test()
-    console.log(this.form)
   }
 
   getRooms() {
-    this.modalService.getAllRooms().subscribe(response => {
-      this.rooms = response;
-    })
+    try {
+      this.modalService.getAllRooms().subscribe(response => {
+        this.rooms = response;
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   getEvaluations() {
-    this.modalService.getAllEvaluations().subscribe(response => {
-      this.evaluations = response["data"];
-    })
+    try {
+      this.modalService.getAllEvaluations().subscribe(response => {
+        this.evaluations = response["data"];
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   getTeams() {
-    this.modalService.getAllTeams().subscribe(response => {
-      console.log(response)
-      this.teams = response;
-    })
+    try {
+      this.modalService.getAllTeams().subscribe(response => {
+        this.teams = response;
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   getContents() {
-    this.modalService.getAllContents().subscribe(response => {
-      this.contents = response;
-    })
+    try {
+      this.modalService.getAllContents().subscribe(response => {
+        this.contents = response;
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   test() {
