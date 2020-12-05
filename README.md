@@ -8,4 +8,4 @@
 [Documentação frontend](frontend/README.md)
 
 ## Avaliação P3
-Componente confirm que se encontra dentro da pasta `frontend/src/app/components/confirm`
+Componente confirm que se encontra dentro da pasta `frontend/src/app/components/delete-modal`
