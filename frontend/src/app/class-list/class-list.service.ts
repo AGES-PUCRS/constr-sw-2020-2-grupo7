@@ -22,7 +22,7 @@ export class ClassListService {
         return this.http.delete(`${this.url}/classes/${id}`)
     }
 
-    getSpecificClass(id: string) { // &expanded=content
-        return this.http.get(`${this.url}/classes/${id}?expanded=team&expanded=evaluation&expanded=room`)
+    getSpecificClass(id: string) { // 
+        return this.http.get(`${this.url}/classes/${id}?expanded=team&expanded=evaluation&expanded=room&expanded=content`)
     }
 }

@@ -16,7 +16,7 @@ export class ModalService {
     constructor(private http: HttpClient) {
         this.classUrl = "http://ec2-3-15-145-30.us-east-2.compute.amazonaws.com:3000/api/v1";
         this.teamUrl = "http://ec2-34-238-241-74.compute-1.amazonaws.com:3000";
-        this.contentUrl = "http://3.128.18.231:5000";
+        this.contentUrl = "http://18.223.190.133:3333";
         this.roomsUrl = "http://ec2-3-23-106-145.us-east-2.compute.amazonaws.com:3001";
     }
     
